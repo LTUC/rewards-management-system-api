@@ -1,7 +1,7 @@
 # Rewards Management System API (RMS_API)
 
 
-### 1. Project Description:
+### Project Description:
 
 Simple API crud builded by Django Technology & Rest Framework
 
@@ -11,7 +11,7 @@ mainly RMS_API builded to serve the main project [RMS](https://github.com/LTUC/r
 
 -----------------------------------
 
-### 2. Requirements:
+### Requirements:
 
 - poetry_dev-tool
 - python = "^3.9"
@@ -43,25 +43,16 @@ migrating done ususaly by using `python mange.py migrate`
 
 RMS_API using many https routs that will provide you with data and main endPoints are:
 
-- *admin/  : witch will be responsible about guide you directly to the ***django admin panel***
+- ***admin/***  : witch will be responsible about guide you directly to the **django admin panel**
 
-- *data/  : special route used to return to the user important json data about the names of cohorts and the instructional team that particpat in
+- ***data/***  : special route used to return to the user important json data about the names of cohorts and the instructional team that particpat in
 
-- *points/ : witch accept 2 mthods:
+- ***points/*** : witch accept 2 mthods:
     - GET: witch will retrun the points for each student with al point details ^it may pass **"by_student"** with value of the student name and it will retrun only the points are related to this student in this case
 
-    - POST: witch will create new point for the passed user so it requierd some data in the body request:
-    ```
-    {
-        "owner": "student name that want to give the point",
-        "reward": "witch is choices field accepts only specifc values"
-    }
-    ```
-    ^acceptable rewards:
-    1. Waive Late Assignment Penalty
-    2. Waive Late of class penalty
-    3. +1 mark on any submission
-    4. Resubmit attempt
+    - POST: witch will create new point for the passed user so it requierd some data in the body request
+
+> read more details about [RMS Endpoints](./Endpoints_Documentaton.md)
 
 <br/>
 
@@ -96,12 +87,12 @@ RMS_API contain some specifc local tests to test the main fetures implemntaion :
 
 # TODO
 ## Complete the following tasks in this README
-- [ X ] Project Description
-- [ X ] Requirements
-- [ X ] Getting Started
-- [ X ] Endpoint Documentaton
+- [x] Project Description
+- [x] Requirements
+- [x] Getting Started
+- [x] Endpoint Documentaton
 - [ ] Contributing
-- [ X ] Running Tests
+- [x] Running Tests
 - [ ] Self Hosting
 
 Contributors:
