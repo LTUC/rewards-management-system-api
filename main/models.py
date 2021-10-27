@@ -11,6 +11,7 @@ class Points(models.Model):
     reward = models.CharField(choices=PRIZES, max_length=80)
     is_confirmed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.owner
