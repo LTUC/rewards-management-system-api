@@ -27,3 +27,4 @@ class TestViews(TestSetup):
         self.assertEqual(res.status_code, 200)
 
 
+
