@@ -23,21 +23,3 @@ class DataAPIView(generics.ListAPIView):
 
         return Response(data, status=status.HTTP_200_OK) 
 
-class PointAPIList(generics.ListCreateAPIView):
-    serializer_class = DataSerializer
-    queryset = Points.objects.all()
-
-    def get(self, request):
-        try:
-            if request.data['by_student']:
-                data = Points.objects.filter(owner=request.data['by_student'])
-                if len(data) < 1:
-                    return Response({'error':'no points for this student'}, status=status.HTTP_400_BAD_REQUEST)
-
-                serlized_data = []
-                for i in range(len(data)):            
-                    serlized_data.append({"id": data[i].id,"owner": data[i].owner,"reward": data[i].reward,"is_confirmed": data[i].is_confirmed,"created_at": data[i].created_at})
-                return Response(serlized_data, status=status.HTTP_200_OK) 
-        except:
-            return self.list(request)
-                

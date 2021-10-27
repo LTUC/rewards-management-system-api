@@ -20,5 +20,4 @@ from main.views import DataAPIView, PointAPIList
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('data/', DataAPIView.as_view(), name='data'),
-    path('points/', PointAPIList.as_view(), name='points'),
 ]
