@@ -48,9 +48,17 @@ RMS_API using many https routs that will provide you with data and main endPoint
 - ***data/***  : special route used to return to the user important json data about the names of cohorts and the instructional team that particpat in
 
 - ***points/*** : witch accept 2 mthods:
-    - GET: witch will retrun the points for each student with al point details ^it may pass **"by_student"** with value of the student name and it will retrun only the points are related to this student in this case
+    - GET: witch will retrun the points for each student with al point details 
+    
+    ^it may pass **"by_student"** with value of the student name and it will retrun only the points are related to this student in this case
+
+    ^it may pass **"by_confirmation"** with Boolean value and it will retrun only the points are related to this value in is_confiermd field
+
 
     - POST: witch will create new point for the passed user so it requierd some data in the body request
+
+- ***done-claim/< int:id >*** : witch accept only 1 method:
+    - PUT: witch requierd an point id to be passed in the param and confirmation status for the point in the body
 
 > read more details about [RMS Endpoints](./Endpoints_Documentaton.md)
 
@@ -72,6 +80,7 @@ RMS_API contain some specifc local tests to test the main fetures implemntaion :
 1. test_user_can_get_cohort_students
 2. test_user_can_create_point
 3. test_user_can_get_points
+4. test_user_can_confirm_point
 
 <br/>
 
