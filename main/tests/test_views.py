@@ -1,4 +1,5 @@
 from .test_setup import TestSetup
+from ..models import Points
 
 class TestViews(TestSetup):
 
@@ -19,7 +20,7 @@ class TestViews(TestSetup):
 
 
     def test_user_can_get_points(self):
-        response = self.client.post(self.points_url, self.point_data, format="json")
+        self.client.post(self.points_url, self.point_data, format="json")
         res = self.client.get(self.points_url)
 
         self.assertContains(res,"+1 mark on any submission")
@@ -27,4 +28,13 @@ class TestViews(TestSetup):
         self.assertEqual(res.status_code, 200)
 
 
+    def test_user_can_confirm_point(self):
+        point = self.client.post(self.points_url, self.point_data, format="json")
+        res = self.client.put(self.done_claim_url, self.confirm, format="json")
+        
+        expetcted = Points.objects.get(id=point.data['id'])
+        
+        self.assertEqual(res.data['owner'], expetcted.owner)
+        self.assertEqual(res.data['is_confirmed'], expetcted.is_confirmed)
+        self.assertEqual(res.status_code, 200)
 
