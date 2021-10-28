@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from main.views import DataAPIView, PointAPIList
+import debug_toolbar
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('data/', DataAPIView.as_view(), name='data'),
     path('points/', PointAPIList.as_view(), name='points'),
-    path("api/v1/", include("courses.urls"))
+    path("api/v1/", include("courses.urls")),
+    path('__debug__/', include(debug_toolbar.urls)),
 ]

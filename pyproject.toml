@@ -10,6 +10,7 @@ Django = "^3.2.8"
 djangorestframework = "^3.12.4"
 django-cors-headers = "^3.10.0"
 django-filter = "^21.1"
+django-debug-toolbar = "^3.2.2"
 
 [tool.poetry.dev-dependencies]
 
