@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from main.views import DataAPIView, PointAPIList
+from main.views import DataAPIView, PointAPIList, PointConfirmAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('data/', DataAPIView.as_view(), name='data'),
     path('points/', PointAPIList.as_view(), name='points'),
+    path('done-claim/<int:id>', PointConfirmAPIView.as_view(), name='done-claim'),
 ]
