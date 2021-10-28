@@ -6,9 +6,14 @@ class TestSetup(APITestCase):
     def setUp(self) -> None:
         self.data_url = reverse('data')
         self.points_url = reverse('points')
+        self.done_claim_url = reverse('done-claim', args=[1])
 
         self.data_by_student = {
             "by_student":"Adham_Mhaydat",
+        }
+
+        self.confirm = {
+            "is_confirmed": True
         }
 
         self.point_data = {
