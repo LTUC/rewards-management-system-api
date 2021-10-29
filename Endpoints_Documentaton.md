@@ -7,20 +7,70 @@
 
         **Responses:**
         1. *200 (OK)* : 
-            *  data will be shaped as ***Object***:
+            *  data will be shaped as ***List***:
             ```
+            [
             {
-                'Cohort Name (py-d6)':{
-                    "Instructor":"Instructor Name",
-                    "TAs":['TAs Names'],
-                    "Students":['All Students Names']
-                }
-            }
+                "id": 1,
+                "students": [
+                                {
+                                    "id": 27,
+                                    "first_name": "example",
+                                    "last_name": "example",
+                                    "course": 1
+                                },
+                                {
+                                    "id": 20,
+                                    "first_name": "example",
+                                    "last_name": "example",
+                                    "course": 1
+                                },
+                                {
+                                    "id": 14,
+                                    "first_name": "example",
+                                    "last_name": "example",
+                                    "course": 1
+                                },
+                                {
+                                    "id": 13,
+                                    "first_name": "example",
+                                    "last_name": "example",
+                                    "course": 1
+                                },
+                                {
+                                    "id": 7,
+                                    "first_name": "example",
+                                    "last_name": "example",
+                                    "course": 1
+                                },
+                                {
+                                    "id": 1,
+                                    "first_name": "example",
+                                    "last_name": "example",
+                                    "course": 1
+                                }
+                            ],
+                "code": "example-example-example",
+                "instructor": "example example",
+                "tas": {
+                        "tas": [
+                                    "example example",
+                                    "example example",
+                                    "example example",
+                                    "example example",
+            
+                                ]
+                        }
+            },
+            ]
+
             ```
             > response status always will be 200
 
+        
 
-- ***points/***  : witch will retrun all points for cohort or specifc student
+
+- ***api/v#/students/***  : witch will retrun all points for cohort or specifc student
 
     ***Requests:***
 
