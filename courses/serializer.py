@@ -7,7 +7,7 @@ class StudentsSerializer(serializers.ModelSerializer):
     course_id = serializers.PrimaryKeyRelatedField(write_only=True, source="course", queryset=Courses.objects.all())
     class Meta:
         model = Students
-        fields = ["id", "first_name", "last_name", "course"]
+        fields = "__all__"
 
 
 class CoursesSerializer(serializers.ModelSerializer):
