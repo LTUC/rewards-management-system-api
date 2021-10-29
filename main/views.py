@@ -17,7 +17,7 @@ class DataAPIView(generics.ListAPIView):
             'py-d6':{
                 "Instructor":"Dario Thornhill",
                 "TAs":["Rania Abdullah","Saja Ismael","Diala Abedalqader","Ahmad Al-Mohammad","Ashjan Albarqi","Hanaa Al-Ghazzi","Emad Alzoubi","Yazan Alshikha","Mohammad Hadi","Mohammad Alnimrawi","Saleh Almasri"],
-                "Students":["Anas Abusaif","Adham Mhaydat","Hamza Ahmad","Tasneem Al-Absi","Mohammed Al-Hanbali","Renad Al-Khlafat","Aseel Al-Saqer","Majed Al-Swaeer","Moayad Osama Alhaj","Tahany Ali","Morad Alkhatib","Shahd Alkhatib","Khaled Alqrainy","Ahmad Alrasheed","Ehab Ahmad","Haneen Hashlamoun","Du'a Jaradat","yousef Jariry","Jehad Abu Awwad","Faisal Kushha","Abdullah Nazzal","Ashrf Obeidat","Odeh Abuzaid","Mona Salih","Musa'b Shalaldeh","mohammad Silwadi","Suzan Ahmad Hiary","bashar taamneh"]
+                "Students":["Anas Abusaif","Adham Mhaydat","Hamza Ahmad","Tasneem Al-Absi","Mohammed Al-Hanbali","Renad Al-Khlafat","Aseel Al-Saqer","Majed Al-Swaeer","Moayad Osama Alhaj","Tahany Ali","Morad Alkhatib","Shahd Alkhatib","Khaled Alqrainy","Ahmad Alrasheed","Ehab Ahmad","Haneen Hashlamoun","Du'a Jaradat","yousef Jariry","Jehad Abu Awwad","Faisal Kushha","Abdullah Nazzal","Ashrf Obeidat","Odeh Abuzaid","Mona Salih","Musa'b Shalaldeh","Mohammad Silwadi","Suzan Ahmad Hiary","Bashar Taamneh"]
             }
         }
 

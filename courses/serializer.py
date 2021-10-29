@@ -11,7 +11,7 @@ class StudentsSerializer(serializers.ModelSerializer):
 
 
 class CoursesSerializer(serializers.ModelSerializer):
-    course = StudentsSerializer(many=True)   
+    students = StudentsSerializer(many=True)   
 
     class Meta:
         model = Courses

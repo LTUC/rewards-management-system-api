@@ -1,9 +1,9 @@
 # Expanded Endpoints Documentaton:
 
-- ***data/***  : witch will retrun all cohort data (students, TAs, instructors)
+- ***/api/v#/courses/***  : This end point will prrvide you with a list of courses and all avaliable information about each of this courses.
 
     ***Request:***
-    * GET: ***normall get request method only allowed***
+    * GET: 
 
         **Responses:**
         1. *200 (OK)* : 
