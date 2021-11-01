@@ -5,7 +5,7 @@
 
 Simple API crud builded by Django Technology & Rest Framework
 
-mainly RMS_API builded to serve the main project [RMS](https://github.com/LTUC/rewards-management-system) 
+Mainly RMS_API builded to serve the main project [RMS](https://github.com/LTUC/rewards-management-system)
 
 <br/>
 
@@ -13,27 +13,40 @@ mainly RMS_API builded to serve the main project [RMS](https://github.com/LTUC/r
 
 ### Requirements:
 
-- poetry_dev-tool
-- python = "^3.9"
-- Django = "^3.2.8"
-- djangorestframework = "^3.12.4"
+- python = 3.9
+- Django = 3.2.8
+- Django = 3.2.8
+- djangorestframework = 3.12.4
+- django-cors-headers = 3.10.0
+- django-filter = 21.1
+- django-debug-toolbar = 3.2.2
+- gunicorn = 20.1.0
+- whitenoise = 5.3.0
+- psycopg2-binary = 2.9.1
+- django-environ = 0.8.1
 
 <br/>
 
 -----------------------------------
 
-### Getting Started:
+### Getting Started locally:
 
-1. using your terminal start with `poetry install` to install the main dependencies for the project
+1. You may have Docker and it should be setuped proparly.
 
-2. after installing done you can start by sourcing project virtual environment by using `poetry shell`
+2. In your terminal run the following command to build and start the services:
 
-3. your virtual environment are applied now its time to start some normal prosegures by `python mange.py makemigrations` witch is simply will collect what models going to be added as **tables** in the DB (data base)
+```
+➜  rewards-management-system-api git:(branch) ✗ docker-compose up --build
+```
+3. All migrations file are in the repo but if you did some changes on the models so you ought to run this command:
 
-4. migrating is th most important setp in starting any *django app* mainly it will convert your models to a real DB Tables so it will be ready to get the new records in the right place
-migrating done ususaly by using `python mange.py migrate`
-
-5. well it wasn't long steps! :) now you are ready to launch up and start your app server by runing: `python mange.py runserver` you will find that your terminal started the server and provided you with link to access your project [https://(locallhost):(port)]()
+```
+➜  rewards-management-system-api git:(branch) ✗ docker-compose run web python manage.py makemigrations `app name that had been changes`
+```
+4. To migrate you need this command:
+```
+➜  rewards-management-system-api git:(branch) ✗ docker-compose run web python manage.py migrate
+```
 
 <br/>
 
@@ -43,57 +56,14 @@ migrating done ususaly by using `python mange.py migrate`
 
 RMS_API using many https routs that will provide you with data and main endPoints are:
 
-- ***admin/***  : witch will be responsible about guide you directly to the **django admin panel**
+- ***admin/***  : This end point will be responsible about guide you directly to the **django admin panel**
 
-- ***data/***  : special route used to return to the user important json data about the names of cohorts and the instructional team that particpat in
+- ***/api/v#/courses/***  : This end point will prrvide you with a list of courses and all avaliable information about each of this courses.
 
-- ***points/*** : witch accept 2 mthods:
-    - GET: witch will retrun the points for each student with al point details ^it may pass **"by_student"** with value of the student name and it will retrun only the points are related to this student in this case
+- ***api/v#/students/*** : This end point for all students names in our system.
 
-    - POST: witch will create new point for the passed user so it requierd some data in the body request
+- ***api/v#/rewards/*** : This end point will provide you with information about unclaimed rewards. 
 
 > read more details about [RMS Endpoints](./Endpoints_Documentaton.md)
 
 <br/>
-
------------------------------------
-
-### Contributing:
-
-
-<br/>
-
------------------------------------
-
-### Running Tests:
-
-RMS_API contain some specifc local tests to test the main fetures implemntaion :
-
-1. test_user_can_get_cohort_students
-2. test_user_can_create_point
-3. test_user_can_get_points
-
-<br/>
-
------------------------------------
-
-### Self Hosting:
-
-
-
-<br/>
-
------------------------------------
-
-# TODO
-## Complete the following tasks in this README
-- [x] Project Description
-- [x] Requirements
-- [x] Getting Started
-- [x] Endpoint Documentaton
-- [ ] Contributing
-- [x] Running Tests
-- [ ] Self Hosting
-
-Contributors:
-Author - https://github.com/3madov-77

@@ -1,26 +1,138 @@
 # Expanded Endpoints Documentaton:
 
-- ***data/***  : witch will retrun all cohort data (students, TAs, instructors)
+- ***/api/v#/courses/:id***  : This end point will prrvide you with a list of courses and all avaliable information about each of this courses.
 
     ***Request:***
-    * GET: ***normall get request method only allowed***
+    * GET: 
 
         **Responses:**
         1. *200 (OK)* : 
-            *  data will be shaped as ***Object***:
-            ```
+            *  data will be shaped as ***JSON List***:
+            ```JSON
+            [
             {
-                'Cohort Name (py-d6)':{
-                    "Instructor":"Instructor Name",
-                    "TAs":['TAs Names'],
-                    "Students":['All Students Names']
-                }
-            }
+                "id": 1,
+                "students": [
+                                {
+                                    "id": 27,
+                                    "first_name": "example",
+                                    "last_name": "example",
+                                    "course": 1
+                                },
+                                {
+                                    "id": 20,
+                                    "first_name": "example",
+                                    "last_name": "example",
+                                    "course": 1
+                                },
+                                {
+                                    "id": 14,
+                                    "first_name": "example",
+                                    "last_name": "example",
+                                    "course": 1
+                                },
+                                {
+                                    "id": 13,
+                                    "first_name": "example",
+                                    "last_name": "example",
+                                    "course": 1
+                                },
+                                {
+                                    "id": 7,
+                                    "first_name": "example",
+                                    "last_name": "example",
+                                    "course": 1
+                                },
+                                {
+                                    "id": 1,
+                                    "first_name": "example",
+                                    "last_name": "example",
+                                    "course": 1
+                                }
+                            ],
+                "code": "example-example-example",
+                "instructor": "example example",
+                "tas": {
+                        "tas": [
+                                    "example example",
+                                    "example example",
+                                    "example example",
+                                    "example example",
+            
+                                ]
+                        }
+            },
+            ]
+
             ```
-            > response status always will be 200
+    
+    * POST:
+        **Request:**
+        1. *201 (OK)* : 
+            *  data must be shaped as ***JSON object***:
+            ```JSON
+                {
+                
+       
+                    "code": "example-example-example",
+                    "instructor": "example example",
+                    "tas": {
+                        "tas": [
+                                    "example example",
+                                    "example example"
+                                ]
+                            }
+               
+                }
+            ```
+        **Response**
+        *data will be shaped as ***JSON Object***
+        ```JSON
+             {
+                
+       
+                    "code": "example-example-example",
+                    "instructor": "example example",
+                    "tas": {
+                        "tas": [
+                                    "example example",
+                                    "example example"
+                                ]
+                            }
+               
+                }
+        ```
+
+    
+- ***/api/v#/courses/id***  : This end point will prrvide you with information about a spacific course related to the id number.
+
+    ***Request:***
+    * GET: 
+
+        **Responses:**
+        1. *200 (OK)* : 
+            *  data will be shaped as ***JSON Object***:
+            ```JSON
+                {
+                
+       
+                    "code": "example-example-example",
+                    "instructor": "example example",
+                    "tas": {
+                        "tas": [
+                                    "example example",
+                                    "example example"
+                                ]
+                        }
+               
+                }
+            ```
+    
+    * PUT, PATCH and DELETE requests are be accepted for the end point with id.
+        
 
 
-- ***points/***  : witch will retrun all points for cohort or specifc student
+- ***api/v#/students/:id***  : Which will retrun all points for cohort or specifc student
 
     ***Requests:***
 
@@ -28,8 +140,8 @@
 
         **Responses:**
         1. *200 (OK)* :
-            *  data will be shaped as ***Array***:
-            ```
+            *  data will be shaped as ***JSON list***:
+            ```JSON
             [
                 {
                     "id": 1,
@@ -53,83 +165,228 @@
                     "created_at": "2021-10-26T23:35:13.935744Z"
                 }
             ]
-            ```
 
+
+
+        * POST: 
+
+        **Request:**
+        1. *201 (OK)* :
+            *  data must be shaped as ***JSON object***:
+            ```JSON
+                {
+	
+                "first_name": "example",
+                "last_name": "example",
+                "course_id": 1
+                }
+            ```
+        **Response**
+        ```JSON
+            {
+            "id": 31,
+            "first_name": "example",
+            "last_name": "example",
+            "course": 1
+            }
+        ```
+
+- ***/api/v#/students/id***  : This end point will prrvide you with information about a spacific student related to the id number.
+
+    ***Request:***
+    * GET: 
+
+        **Responses:**
+        1. *200 (OK)* : 
+            *  data will be shaped as ***JSON Object***:
+            ```JSON
+               {
+                "id": 31,
+                "first_name": "Ahmad",
+                "last_name": "Almohammad",
+                "course": 1
+                }
+            ```
+    
+    * PUT, PATCH and DELETE requests are be accepted for the end point with id.
     ---------------------------------------------
     <br/>
 
-    * GET: ***costmized get request method*** with adding `"by_student":"Student Name"` to the request body, points will returend only that Student Own
+
+- ***api/v#/rewards/:id***  : This end point will provide you with information about unclaimed rewards.
+
+    ***Requests:***
+
+    * GET: ***normall get request method***
 
         **Responses:**
-        1. *200 (OK)* : in case student exist and have points or student not exist
-            *  response data will be shaped as ***Array***:
-            ```
-            [
-                {
-                    "id": 4,
-                    "owner": "Passed Student Name",
-                    "reward": "Waive Late of class penalty",
-                    "is_confirmed": false,
-                    "created_at": "2021-10-26T22:38:55.586653Z"
-                },
-                {
-                    "id": 9,
-                    "owner": "Passed Student Name",
+        1. *200 (OK)* :
+            *  data will be shaped as ***JSON list***:
+            ```JSON
+                [
+                    {
+                        "id": 1,
+                        "owner":{
+                            "id": 25,
+                            "first_name": "example",
+                            "last_name": "example",
+                            "course": 6
+                        },
                     "reward": "+1 mark on any submission",
                     "is_confirmed": false,
-                    "created_at": "2021-10-26T22:39:54.973384Z"
-                }
-            ]
-            ```
-            > even if user own **1 point** data will always returned as an ***Array***
+                    "created_at": "2021-10-29T19:39:35.670135Z"
+                    },
+                    {
+                        "id": 2,
+                        "owner": {
+                            "id": 5,
+                            "first_name": "example",
+                            "last_name": "example",
+                            "course": 5
+                        },
+                        "reward": "Resubmit attempt",
+                        "is_confirmed": false,
+                        "created_at": "2021-10-29T19:39:46.031323Z"
+                    },
+                    {
+                        "id": 3,
+                        "owner": {
+                            "id": 7,
+                            "first_name": "example",
+                            "last_name": "example",
+                            "course": 1
+                        },
+                        "reward": "Waive Late Assignment Penalty",
+                        "is_confirmed": false,
+                        "created_at": "2021-10-29T19:39:57.326885Z"
+                    },
+                    {
+                        "id": 4,
+                        "owner": {
+                            "id": 13,
+                            "first_name": "example",
+                            "last_name": "example",
+                            "course": 1
+                        },
+                        "reward": "Waive Late of class penalty",
+                        "is_confirmed": false,
+                        "created_at": "2021-10-29T19:40:11.292112Z"
+                    },
+                    {
+                        "id": 5,
+                        "owner": {
+                            "id": 1,
+                            "first_name": "example",
+                            "last_name": "example",
+                            "course": 1
+                        },
+                        "reward": "Waive Late of class penalty",
+                        "is_confirmed": false,
+                        "created_at": "2021-10-29T19:40:23.024015Z"
+                    }
+                ]
+                ```
 
-        <br/>
 
-        2. *400 (BAD REQUEST)* : in case student dose'nt have any points
-            *  response data will be shaped as ***Object***:
-            ```
+        * POST: 
+
+        **Request:**
+        1. *201 (OK)* :
+            *  data must be shaped as ***JSON object***:
+            ```JSON
             {
-                "error": "no points for this student"
+                "id": 1,
+                "owner_id": 31,
+                "reward": "+1 mark on any submission"
             }
             ```
+        **Response**
+        ```JSON
+           {
+                "id": 13,
+                "owner": {
+                    "id": 31,
+                    "first_name": "example",
+                    "last_name": "example",
+                    "course": 1
+                },
+                "reward": "+1 mark on any submission",
+                "is_confirmed": false,
+                "created_at": "2021-10-30T16:22:55.033765Z"
+            }
+        ```
+        * Where is_confirmed will take false as default value but you can provide it with other boolean types.
+
+
+
+- ***/api/v#/rewards/id***  : This end point will prrvide you with information about a spacific claim related to the id number.
+
+    ***Request:***
+    * GET: 
+
+        **Responses:**
+        1. *200 (OK)* : 
+            *  data will be shaped as ***JSON Object***:
+            ```JSON
+               {
+                "id": 13,
+                "owner": {
+                    "id": 31,
+                    "first_name": "example",
+                    "last_name": "example",
+                    "course": 1
+                },
+                "reward": "+1 mark on any submission",
+                "is_confirmed": false,
+                "created_at": "2021-10-30T16:22:55.033765Z"
+                }
+            ```
+    
+    * PUT, PATCH and DELETE requests are be accepted for the end point with id.
     ---------------------------------------------
     <br/>
 
-    * POST: ***with 2 requierd vlaues in the body*** and it will create new point in the model for the passed owner(student)
-        
-        ```
-        {
-            "owner": "student name that will be given the point",
-            "reward": "witch is choice field accepts only specifc values"
-        }
-        ```
-        
-        **^acceptable values in reward field:**
-        1. Waive Late Assignment Penalty
-        2. Waive Late of class penalty
-        3. +1 mark on any submission
-        4. Resubmit attempt
 
-        <br/>
+## Filters: 
 
-        **Responses:**
-        1. *201 (CREATED)* : in case all data are valid and no missing data
-            *  response data will be shaped as ***Object***:
-            ```
-            {
-                "id": 10,
-                "owner": "Passed Owner Name",
-                "reward": "Waive Late Assignment Penalty",
-                "is_confirmed": false,
-                "created_at": "2021-10-26T22:38:55.586653Z"
-            }
-            ```
-        2. *400 (BAD REQUEST)* : in case missing any field
-            *  response data will be shaped as ***Object***:
-            ```
-            {
-                "Missing Field Name": [
-                    "This field is required."
+- You can filter the claims related to the owner id by adding it as params in the rewards end point.
+
+    - Example:
+    ***/api/v#/rewards/?id***
+
+    **Responses:**
+        1. *200 (OK)* :
+            *  data will be shaped as ***JSON list***:
+
+            ```JSON
+                [
+                    {
+                        "id": 1,
+                        "owner":{
+                            "id": 25,
+                            "first_name": "example",
+                            "last_name": "example",
+                            "course": 6
+                        },
+                    "reward": "+1 mark on any submission",
+                    "is_confirmed": false,
+                    "created_at": "2021-10-29T19:39:35.670135Z"
+                    },
+                    {
+                        "id": 2,
+                        "owner": {
+                            "id": 25,
+                            "first_name": "example",
+                            "last_name": "example",
+                            "course": 5
+                        },
+                        "reward": "Resubmit attempt",
+                        "is_confirmed": false,
+                        "created_at": "2021-10-29T19:39:46.031323Z"
+                    }
+                    
                 ]
-            }
             ```
+
+            
+            

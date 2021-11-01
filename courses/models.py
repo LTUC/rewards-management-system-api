@@ -15,7 +15,7 @@ class Courses(models.Model):
 class Students(models.Model):
     first_name = models.CharField(max_length=100, blank=False)
     last_name = models.CharField(max_length=100, blank=False)
-    course = models.ForeignKey(Courses, blank=False, on_delete=models.SET_NULL, related_name="course", null=True)
+    course = models.ForeignKey(Courses, blank=False, on_delete=models.SET_NULL, related_name="students", null=True)
 
     def __str__(self):
         return (f'{self.first_name} {self.last_name}')

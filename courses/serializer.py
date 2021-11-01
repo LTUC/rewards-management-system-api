@@ -4,14 +4,14 @@ from .models import Rewads, Courses, Students
 
 
 class StudentsSerializer(serializers.ModelSerializer):
-
+    course_id = serializers.PrimaryKeyRelatedField(write_only=True, source="course", queryset=Courses.objects.all())
     class Meta:
         model = Students
-        fields = ["id", "first_name", "last_name", "course"]
+        fields = "__all__"
 
 
 class CoursesSerializer(serializers.ModelSerializer):
-    course = StudentsSerializer(many=True)   
+    students = StudentsSerializer(many=True, read_only = True)   
 
     class Meta:
         model = Courses
