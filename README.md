@@ -64,6 +64,9 @@ RMS_API using many https routs that will provide you with data and main endPoint
 
 - ***api/v#/rewards/*** : This end point will provide you with information about unclaimed rewards. 
 
+- ***done-claim/< int:id >*** : witch accept only 1 method:
+    - PUT: witch requierd an point id to be passed in the param and confirmation status for the point in the body
+
 > read more details about [RMS Endpoints](./Endpoints_Documentaton.md)
 
 <br/>
