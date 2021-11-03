@@ -56,7 +56,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     email = models.EmailField(_('email adress'), unique=True, blank=False, max_length=255,)
     first_name = models.CharField(max_length=255, blank=False)
     last_name = models.CharField(max_length=255, blank=False)
-    role = models.CharField(max_length=255, blank=False, default='student',choices=roles)
+    role = models.CharField(max_length=255, blank=False, default='ta',choices=roles)
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login' , auto_now = True)
     is_active = models.BooleanField(default=True)

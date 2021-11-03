@@ -4,25 +4,25 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from .models import Courses, Students, Rewads
+from .models import Course, Student, Rewad
 
-class TestCoursesAppModels(TestCase):
+class TestCourseAppModels(TestCase):
 
     @classmethod
     def setUpTestData(cls) -> None:
         
-        test_course = Courses.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
+        test_course = Course.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
         test_course.save()
 
-        test_student = Students.objects.create(first_name="Ahmad", last_name="Almohammad", course=test_course)
+        test_student = Student.objects.create(first_name="Ahmad", last_name="Almohammad", course=test_course)
         test_student.save()
 
-        test_rewards = Rewads.objects.create(owner=test_student, reward="+1 mark on any submission")
+        test_rewards = Rewad.objects.create(owner=test_student, reward="+1 mark on any submission")
         test_rewards.save()
 
 
     def test_course_model(self):
-        course = Courses.objects.get(id=1)
+        course = Course.objects.get(id=1)
         expected_code = f"{course.code}"
         expected_instructor = f"{course.instructor}"
         expected_tas = course.tas
@@ -33,7 +33,7 @@ class TestCoursesAppModels(TestCase):
         self.assertEqual(str(course), "amman-python-401d2")
 
     def test_student_model(self):
-        student = Students.objects.get(id=1)
+        student = Student.objects.get(id=1)
         expected_first_name = f"{student.first_name}"
         expected_last_name = f"{student.last_name}"
         expected_course = f"{student.course.code}"
@@ -44,7 +44,7 @@ class TestCoursesAppModels(TestCase):
         self.assertEqual(str(student), "Ahmad Almohammad")
 
     def test_reward_model(self):
-        reward = Rewads.objects.get(id=1)
+        reward = Rewad.objects.get(id=1)
         expected_owner = str(reward.owner)
         expected_prize = f"{reward.reward}"
 
@@ -62,7 +62,7 @@ class TestCoursesEndPoints(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_course_detail(self):
-        test_course = Courses.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
+        test_course = Course.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
         test_course.save()
 
         response = self.client.get(reverse("CoursesDetailtView", args=[1]))
@@ -90,11 +90,11 @@ class TestCoursesEndPoints(APITestCase):
         response = self.client.post(url,data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Courses.objects.get().code, "amman-python-d2")
-        self.assertEqual(Courses.objects.count(), 1)
+        self.assertEqual(Course.objects.get().code, "amman-python-d2")
+        self.assertEqual(Course.objects.count(), 1)
      
     def test_course_update(self):
-        test_course = Courses.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
+        test_course = Course.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
         test_course.save()
 
         url = reverse("CoursesDetailtView", args=[test_course.id])
@@ -106,11 +106,11 @@ class TestCoursesEndPoints(APITestCase):
         response = self.client.patch(url,data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(Courses.objects.get().code , "amman-python-401d2")
+        self.assertEqual(Course.objects.get().code , "amman-python-401d2")
 
 
     def test_course_delete(self):
-        test_course = Courses.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
+        test_course = Course.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
         test_course.save()
 
         url = reverse("CoursesDetailtView", args=[test_course.id])
@@ -129,10 +129,10 @@ class TestStudentsEndPoints(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_students_detail(self):
-        test_course = Courses.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
+        test_course = Course.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
         test_course.save()
 
-        test_student = Students.objects.create(first_name="Ahmad", last_name= "Almohammad", course = test_course )
+        test_student = Student.objects.create(first_name="Ahmad", last_name= "Almohammad", course = test_course )
         test_student.save()
 
 
@@ -149,7 +149,7 @@ class TestStudentsEndPoints(APITestCase):
         })
 
     def test_students_create(self):
-        test_course = Courses.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
+        test_course = Course.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
         test_course.save()
         url = reverse("StudentsListView")
 
@@ -162,16 +162,16 @@ class TestStudentsEndPoints(APITestCase):
         response = self.client.post(url,data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Students.objects.get().first_name, "Ahmad")
-        self.assertEqual(Students.objects.count(), 1)
+        self.assertEqual(Student.objects.get().first_name, "Ahmad")
+        self.assertEqual(Student.objects.count(), 1)
 
 
      
     def test_students_update(self):
-        test_course = Courses.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
+        test_course = Course.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
         test_course.save()
 
-        test_student = Students.objects.create(first_name="Ahmad", last_name="Almohammad", course=test_course)
+        test_student = Student.objects.create(first_name="Ahmad", last_name="Almohammad", course=test_course)
         test_student.save()
 
         url = reverse("StudentsDetailtView", args=[test_student.id])
@@ -183,14 +183,14 @@ class TestStudentsEndPoints(APITestCase):
         response = self.client.patch(url,data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(Students.objects.get().first_name , "Hadi")
+        self.assertEqual(Student.objects.get().first_name , "Hadi")
 
 
     def test_students_delete(self):
-        test_course = Courses.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
+        test_course = Course.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
         test_course.save()
 
-        test_student = Students.objects.create(first_name="Ahmad", last_name="Almohammad", course=test_course)
+        test_student = Student.objects.create(first_name="Ahmad", last_name="Almohammad", course=test_course)
         test_student.save()
 
         url = reverse("StudentsDetailtView", args=[test_student.id])
@@ -215,13 +215,13 @@ class TestRewardsEndPoints(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_rewards_detail(self):
-        test_course = Courses.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
+        test_course = Course.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
         test_course.save()
 
-        test_student = Students.objects.create(first_name="Ahmad", last_name= "Almohammad", course = test_course )
+        test_student = Student.objects.create(first_name="Ahmad", last_name= "Almohammad", course = test_course )
         test_student.save()
 
-        test_rewards = Rewads.objects.create(owner=test_student, reward="+1 mark on any submission")
+        test_rewards = Rewad.objects.create(owner=test_student, reward="+1 mark on any submission")
         test_rewards.save()
 
 
@@ -231,10 +231,10 @@ class TestRewardsEndPoints(APITestCase):
 
 
     def test_rewards_create(self):
-        test_course = Courses.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
+        test_course = Course.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
         test_course.save()
 
-        test_student = Students.objects.create(first_name="Ahmad", last_name= "Almohammad", course = test_course )
+        test_student = Student.objects.create(first_name="Ahmad", last_name= "Almohammad", course = test_course )
         test_student.save()
         url = reverse("RewardsListView")
 
@@ -246,19 +246,19 @@ class TestRewardsEndPoints(APITestCase):
         response = self.client.post(url,data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Rewads.objects.get().owner.first_name, "Ahmad")
-        self.assertEqual(Rewads.objects.count(), 1)
+        self.assertEqual(Rewad.objects.get().owner.first_name, "Ahmad")
+        self.assertEqual(Rewad.objects.count(), 1)
 
 
      
     def test_rewards_update(self):
-        test_course = Courses.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
+        test_course = Course.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
         test_course.save()
 
-        test_student = Students.objects.create(first_name="Ahmad", last_name="Almohammad", course=test_course)
+        test_student = Student.objects.create(first_name="Ahmad", last_name="Almohammad", course=test_course)
         test_student.save()
 
-        test_rewards = Rewads.objects.create(owner=test_student, reward="+1 mark on any submission")
+        test_rewards = Rewad.objects.create(owner=test_student, reward="+1 mark on any submission")
         test_rewards.save()
 
         url = reverse("RewardsDetailtView", args=[test_rewards.id])
@@ -270,17 +270,17 @@ class TestRewardsEndPoints(APITestCase):
         response = self.client.patch(url,data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(Rewads.objects.get().reward , "Resubmit attempt")
+        self.assertEqual(Rewad.objects.get().reward , "Resubmit attempt")
 
 
     def test_students_delete(self):
-        test_course = Courses.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
+        test_course = Course.objects.create(code="amman-python-401d2", instructor= "Ahmad Alawad", tas={"tas": ["Saleh", "Bashar"]} )
         test_course.save()
 
-        test_student = Students.objects.create(first_name="Ahmad", last_name="Almohammad", course=test_course)
+        test_student = Student.objects.create(first_name="Ahmad", last_name="Almohammad", course=test_course)
         test_student.save()
 
-        test_rewards = Rewads.objects.create(owner=test_student, reward="+1 mark on any submission")
+        test_rewards = Rewad.objects.create(owner=test_student, reward="+1 mark on any submission")
         test_rewards.save()
 
         url = reverse("RewardsDetailtView", args=[test_rewards.id])
