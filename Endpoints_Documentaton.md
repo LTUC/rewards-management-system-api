@@ -148,21 +148,24 @@
                     "owner": "Student Name",
                     "reward": "Waive Late of class penalty",
                     "is_confirmed": false,
-                    "created_at": "2021-10-26T22:38:55.586653Z"
+                    "created_at": "2021-10-26T22:38:55.586653Z",
+                    "updated_at": "2021-10-28T03:44:00.200307Z"
                 },
                 {
                     "id": 2,
                     "owner": "Student Name",
                     "reward": "+1 mark on any submission",
                     "is_confirmed": false,
-                    "created_at": "2021-10-26T22:39:54.973384Z"
+                    "created_at": "2021-10-26T22:39:54.973384Z",
+                    "updated_at": "2021-10-28T03:44:00.200307Z"
                 },
                 {
                     "id": 3,
                     "owner": "Student Name",
                     "reward": "+1 mark on any submission",
                     "is_confirmed": false,
-                    "created_at": "2021-10-26T23:35:13.935744Z"
+                    "created_at": "2021-10-26T23:35:13.935744Z",
+                    "updated_at": "2021-10-28T03:44:00.200307Z"
                 }
             ]
 
