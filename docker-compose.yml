@@ -17,9 +17,9 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=rms
+      - POSTGRES_DB=staging_rms
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - ./postgres_data:/var/lib/postgresql
       - ./dbbackups:/backups
 
     ports:
