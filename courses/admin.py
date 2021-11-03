@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import Rewads, Courses, Students
+from .models import Rewad, Course, Student, AssignRole
 # Register your models here.
 
-admin.site.register(Courses)
-admin.site.register(Rewads)
-admin.site.register(Students)
+admin.site.register(Course)
+admin.site.register(AssignRole)
+admin.site.register(Rewad)
+admin.site.register(Student)
